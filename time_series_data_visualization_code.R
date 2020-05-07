@@ -2,7 +2,9 @@
 # Business Science Workshops
 
 # INSTALL ----
-devtools::install_github("business-science/timetk")
+# devtools::install_github("business-science/timetk")
+# install.packages("tidyverse")
+# install.packages("lubridate")
 
 # LIBRARIES ----
 library(tidyverse)
