@@ -20,8 +20,10 @@ walmart_sales_weekly
 
 # 1.0 TIME SERIES PLOTTING ----
 
+?plot_time_series
+
 bike_sharing_daily %>%
-    plot_time_series(dteday, cnt)
+    plot_time_series(dteday, cnt, .interactive = FALSE)
 
 bike_sharing_daily %>%
     plot_time_series(
@@ -48,11 +50,23 @@ bike_sharing_daily %>%
 
 walmart_sales_weekly %>%
     group_by(id) %>%
-    plot_time_series(Date, Weekly_Sales, .facet_ncol = 3)
+    plot_time_series(Date, Weekly_Sales, .facet_ncol = 2)
 
 walmart_sales_weekly %>%
     group_by(id) %>%
-    plot_anomaly_diagnostics(Date, Weekly_Sales, .facet_ncol = 3)
+    plot_anomaly_diagnostics(Date, log(Weekly_Sales), .facet_ncol = 2)
+
+
+# 4.0 BONUS! SEASONALITY ----
+
+bike_sharing_daily %>%
+    plot_seasonal_diagnostics(dteday, cnt)
+
+walmart_sales_weekly %>%
+    group_by(id) %>%
+    filter(group_indices() %in% 1:4) %>%
+    plot_seasonal_diagnostics(Date, Weekly_Sales)
+
 
 # KEY RESOURCES ----
 # A LOT MORE TO LEARN!!
